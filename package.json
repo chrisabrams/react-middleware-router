@@ -1,6 +1,6 @@
 {
   "name": "react-middleware-router",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A middleware-based router for React",
   "main": "index.js",
   "directories": {
@@ -14,8 +14,8 @@
     "url": "git+https://github.com/chrisabrams/react-middleware-router.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Chris Abrams <mail@chrisabrams.com>",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/chrisabrams/react-middleware-router/issues"
   },

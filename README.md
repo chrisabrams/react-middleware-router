@@ -1,6 +1,12 @@
 # react-middleware-router
 A middleware-based router for React.
 
+## Installation
+
+```
+npm install react-middleware-router
+```
+
 ## Usage
 This router is designed to be a drop-in replacement for `react-router`.
 
