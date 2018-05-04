@@ -24,9 +24,9 @@ class App extends Component {
 ```
 
 Notice a few additions:
-1. `errorComponent` is optionally supplied to `Switch`. There is no need to create a "catch-all" route for errors.
-2. `loadingComponent` is optionally supplied to `Switch`. This enables a app-wide loading/spinner component which is rendered until the route with middleware has completeing processing the middleware.
-3. `middleware` is optionally supplied to `Rotue`. This is an array of functions which run before the `component` for the route is rendered. If any middleware fail the `errorComponent` is rendered instead.
+- `errorComponent` is optionally supplied to `Switch`. There is no need to create a "catch-all" route for errors.
+- `loadingComponent` is optionally supplied to `Switch`. This enables an app-wide loading/spinner component which is rendered until the route with middleware has completeing processing the middleware.
+- `middleware` is optionally supplied to `Rotue`. This is an array of functions which run before the `component` for the route is rendered. If any middleware return an error the `errorComponent` is rendered instead.
 
 ### Middleware
 Here is an exampe of a middleware function:
@@ -39,10 +39,10 @@ function bazware(o, next) {
 }
 ```
 
-1. The first argument, property `o`, is the object that was optionally passed from a previous middleware.
-2. The second argument, function `next`, is the callback to tell the middleware it has completed.
-2a. The first argument to `next` is always an error or `null`.
-2b. The second argument to `next` is the data you want to pass to the next middleware.
+- The first argument, property `o`, is the object that was optionally passed from a previous middleware.
+- The second argument, function `next`, is the callback to tell the middleware it has completed (or errored).
+- The first argument to `next` is always an error or `null`.
+- The second argument to `next` is the data you want to pass to the next middleware.
 
 #### Passing data or errors to middleware
 
