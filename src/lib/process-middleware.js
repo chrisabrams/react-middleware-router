@@ -1,4 +1,3 @@
-//const {EventEmitter, Middleware} = require('gestalt-core')
 const EventEmitter = require('gestalt-event-emitter')
 const Middleware = require('gestalt-middleware')
 
