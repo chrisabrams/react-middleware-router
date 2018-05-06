@@ -10,20 +10,24 @@ npm install react-middleware-router
 ## Usage
 This router is designed to be a drop-in replacement for `react-router`.
 
-### Switch and Route
+### Browser Routing
 Here is an example of a small app:
 
 ```
+const { BrowserRouter, Route, Switch } = require('react-middleware-router')
+
 class App extends Component {
 
   render() {
     return (
-      <Switch errorComponent={NotFound} loadingComponent={Spinner}>
-        <Route path="/bar" middleware={[barware]} component={Bar} />
-        <Route path="/baz" middleware={[bazware]} component={Baz} />
-        <Route path="/foo" middleware={[fooware]} component={Foo} />
-        <Route exact path="/" component={Home} />
-      </Switch>
+      <BrowserRouter history={history}>
+        <Switch errorComponent={NotFound} loadingComponent={Spinner}>
+          <Route path="/bar" middleware={[barware]} component={Bar} />
+          <Route path="/baz" middleware={[bazware]} component={Baz} />
+          <Route path="/foo" middleware={[fooware]} component={Foo} />
+          <Route exact path="/" component={Home} />
+        </Switch>
+      </BrowserRouter>
     )
   }
 }
@@ -33,6 +37,31 @@ Notice a few additions:
 - `errorComponent` is optionally supplied to `Switch`. There is no need to create a "catch-all" route for errors.
 - `loadingComponent` is optionally supplied to `Switch`. This enables an app-wide loading/spinner component which is rendered until the route with middleware has completeing processing the middleware.
 - `middleware` is optionally supplied to `Rotue`. This is an array of functions which run before the `component` for the route is rendered. If any middleware return an error the `errorComponent` is rendered instead.
+
+### Browser Routing with Redux
+
+```
+const { ConnectedRouter, Route, Switch } = require('react-middleware-router')
+const { Provider } = require('react-redux')
+
+class App extends Component {
+
+  render() {
+    return (
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <Switch errorComponent={NotFound} loadingComponent={Spinner}>
+            <Route path="/bar" middleware={[barware]} component={Bar} />
+            <Route path="/baz" middleware={[bazware]} component={Baz} />
+            <Route path="/foo" middleware={[fooware]} component={Foo} />
+            <Route exact path="/" component={Home} />
+          </Switch>
+        </ConnectedRouter>
+      </Provider>
+    )
+  }
+}
+```
 
 ### Middleware
 Here is an exampe of a middleware function:

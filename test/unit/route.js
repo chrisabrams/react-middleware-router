@@ -1,7 +1,7 @@
 const React = require('react')
 const ReactDOM = require('react-dom')
 const { mount } = require('enzyme')
-const { MemoryRouter } = require('react-router')
+const MemoryRouter = require('../../src/router/memory')
 
 const App = require('../helpers/app')
 const { Bar, Baz, Foo, Home, NotFound, Spinner } = require('../helpers/app').components

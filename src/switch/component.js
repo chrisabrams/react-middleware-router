@@ -4,9 +4,6 @@ const warning = require('warning')
 const invariant = require('invariant')
 const matchPath = require('./match-path')
 
-/**
- * The public API for rendering the first <Route> that matches.
- */
 class Switch extends React.Component {
   static contextTypes = {
     router: PropTypes.shape({
