@@ -14,7 +14,7 @@ class MiddlewareRoute extends Component {
     this.processor = new MiddlewareProcessor()
 
     /*
-    NOTE: Can't render a route with a both component & render property
+    NOTE: Can't render a route with a both component & render property; this is a React Router limitation.
     */
     this.rProps = Object.assign({}, props)
     delete this.rProps.component
@@ -22,7 +22,7 @@ class MiddlewareRoute extends Component {
     this.state = {
       completed: false,
       props: this.rProps,
-      redirectPathname: this.props.redirectPathname || '/error' // Default path to send on redirect
+      redirectPathname: this.props.redirectPathname || '/error' // Default path to redirect to
     }
 
   }
@@ -36,7 +36,13 @@ class MiddlewareRoute extends Component {
     /*
     This is a Component that was mounted from another route; let the component know that the route has changed
     */
-    if(this.state.completed && this.props.computedMatch.path != nextProps.computedMatch.path) {
+    if (this.state.completed &&
+      this.props.computedMatch &&
+      this.props.computedMatch.path &&
+      nextProps.computedMatch &&
+      nextProps.computedMatch.path &&
+      this.props.computedMatch.path != nextProps.computedMatch.path
+    ) {
       this.setState({props: nextProps})
     }
   }
@@ -56,7 +62,6 @@ class MiddlewareRoute extends Component {
         .on('end', () => {
           this.setState({
             completed: true,
-            //redirectPathname: '/dashboard'
           })
         })
         .on('error', (e) => {
@@ -64,7 +69,6 @@ class MiddlewareRoute extends Component {
   
           this.setState({
             completed: true,
-            //redirectPathname: '/dashboard'
           })
         })
   
@@ -96,7 +100,7 @@ class MiddlewareRoute extends Component {
 
   render() {
 
-    const LoadingComponent = (this.loadingComponent) ? this.loadingComponent : null
+    const LoadingComponent = (this.loadingComponent) ? this.loadingComponent : undefined
 
     return this.state.completed
       ? <Route
