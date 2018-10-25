@@ -1,5 +1,5 @@
 # react-middleware-router
-A middleware-based router for React. This router is designed to be a drop-in replacement for both `react-router` and if using redux `react-router-redux`. I originally designed this router as an example for a friend to show how logic can be performed before a route renders a component; in this case it was a single page app making an authentication request but I made the project generic enough that any logic could be applied as long as it could be run inside a middleware function.
+A middleware-based router for React. This router is designed to be a drop-in replacement for both `react-router` and if using redux `react-router-redux`. I originally designed this router as an example for a friend to show how logic can be performed before a route renders a component; in this case it was a single page app making an authentication request but I made the project generic enough that any logic could be applied as long as it could be run inside a middleware function. Please see the test for examples of sync as well as async middleware.
 
 ## Installation
 
